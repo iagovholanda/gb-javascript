@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 /* Indicar o repositorio dos templates, para percorrer as pastas */
 import { resolve } from 'path';
-import exphbs from 'express-handlebars';
+import { create } from 'express-handlebars';
 import nodemailerhbs from 'nodemailer-express-handlebars';
 import mailConfig from '../config/mail';
 
@@ -30,12 +30,11 @@ class Mail {
   configureTemplates() {
     /* View do caminhos dos emails */
     const viewPath = resolve(__dirname, '..', 'app', 'views', 'emails');
-
     /* compile -> Como que ele compila os nossos templates de emails */
     this.transporter.use(
       'compile',
       nodemailerhbs({
-        viewEngine: exphbs.create({
+        viewEngine: create({
           /* Pega mesmo caminho passado no viewPath, chamando em seguida
           a pasta layouts. */
           layoutsDir: resolve(viewPath, 'layouts'),
@@ -48,6 +47,7 @@ class Mail {
       })
     );
   }
+
 
   /* Metodo responsavel por enviar o email */
   sendMail(message) {
