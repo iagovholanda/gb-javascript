@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer';
 /* Indicar o repositorio dos templates, para percorrer as pastas */
 import { resolve } from 'path';
-import exphbs from 'express-handlebars'
+import exphbs from 'express-handlebars';
 import nodemailerhbs from 'nodemailer-express-handlebars';
 import mailConfig from '../config/mail';
+
 class Mail {
   constructor() {
     /* Desestruturação, pegando apenas algumas informações
@@ -25,8 +26,8 @@ class Mail {
     this.configureTemplates();
   }
 
-/* Configuração Templates Enginer */
-configureTemplates() {
+  /* Configuração Templates Enginer */
+  configureTemplates() {
     /* View do caminhos dos emails */
     const viewPath = resolve(__dirname, '..', 'app', 'views', 'emails');
 
