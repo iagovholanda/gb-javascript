@@ -1,6 +1,6 @@
 import User from '../models/User'
 import Appointment from '../models/Appointment'
-import { starOfDay, endOfDay, parserISO } from 'date-fns'
+import { startOfDay, endOfDay, parseISO } from 'date-fns'
 import { Op } from 'sequelize'
 
 /*
@@ -32,7 +32,7 @@ class ScheduleController {
                 date: {
                     /* Retorna o valor como chave do objeto. */
                     [Op.between]: [
-                       starOfDay(parsedDate),
+                       startOfDay(parsedDate),
                        endOfDay(parsedDate)
                     ]
                     /* Retorna todos os agendamentos do comeco do dia ate o final do dia da data em que foi passada como parametro. */
